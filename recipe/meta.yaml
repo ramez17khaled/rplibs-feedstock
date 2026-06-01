@@ -10,13 +10,14 @@ source:
   sha256: 1b36074300932ac6653d93d4b0fe61e538d3353b786b2ec08dd7a66bf4b78b9f
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: {{ PYTHON }} setup.py install
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - pip
     - setuptools
   run:
     - python >={{ python_min }}
@@ -25,9 +26,10 @@ requirements:
     - networkx >=2.5
     - brs_utils >=1.26.0
     - filetype
-    - chemlite
+    - chemlite >=2.8.0
     - rr_cache
     - cobra
+    - libsbml
 
 test:
   imports:
